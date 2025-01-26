@@ -1,0 +1,9 @@
+@page "/summary"
+@using SamplePOS.ViewModels
+@inject CartViewModel ViewModel
+
+<div class="border rounded border-primary mt-3 p-3">
+    <p>Total: @ViewModel.Cart.Total.ToString("C")</p>
+    <button class="btn btn-danger" @onclick="ViewModel.ClearCart">Borrar Carrito</button>
+    <button class="btn btn-success" @onclick="ViewModel.Bill">Facturar</button>
+</div>
