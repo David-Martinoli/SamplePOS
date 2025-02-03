@@ -1,18 +1,8 @@
-namespace SamplePOS.Models{
-public class Cart
+namespace SamplePOS_ServerSide.Models
 {
-    public List<Product> Products { get; set; } = new List<Product>();
-
-    public decimal Total => Products.Sum(p => p.Price);
-
-    public void AddProduct(Product product)
+    public class Cart
     {
-        Products.Add(product);
+        public List<Product> Products { get; set; } = [];
+        public decimal Total => Products.Sum(p => p.Price);
     }
-
-    public void ClearCart()
-    {
-        Products.Clear();
-    }
-}
 }

@@ -1,9 +1,12 @@
-namespace SamplePOS.Models{
-public class Product
+namespace SamplePOS_ServerSide.Models
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Image { get; set; }
-    public decimal Price { get; set; }
-}
+    public class Product
+    {
+        public int Id { get; set; }
+        public required string Name { get; set; }
+        public required string Description { get; set; }
+        public decimal Price { get; set; }
+        public required string Image_url { get; set; }
+    }
+
 }

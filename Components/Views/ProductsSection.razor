@@ -1,0 +1,45 @@
+@using SamplePOS_ServerSide.Models
+@using SamplePOS_ServerSide.ViewModels
+@inject ProductsViewModel ProductsViewModel
+@inject CartViewModel CartViewModel
+
+
+<h3>Productos</h3>
+
+<div class="container border border-primary rounded p-3">
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		@foreach (var product in _products)
+		{
+			<div class="col">
+				<div class="card border-primary h-100">
+					<img src="@product.Image_url" alt="@product.Name" class="card-img-top img-fluid" />
+					<div class="card-body text-center">
+						<h5 class="card-title">@product.Name</h5>
+						<h6 class="card-text">@product.Description</h6>
+						<p class="card-text">@product.Price.ToString("C")</p>
+					</div>
+					<div class="card-footer border-0 text-center bg-body">
+						<button class="btn btn-primary mt-auto" @onclick="() => AddProductToCart(product)">Agregar</button>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+
+</div>
+
+@code
+{
+	private IEnumerable<Product> _products { get; set; } = Enumerable.Empty<Product>();
+
+	protected override async Task OnInitializedAsync()
+	{
+		_products = await ProductsViewModel.LoadProductsAsync();
+	}
+
+	private void AddProductToCart(Product product)
+	{
+		ProductsViewModel.AddProduct(product);
+	}
+}
